@@ -31,6 +31,18 @@
             }
         </div>
 
+        @if (ViewBag.IsInFavorite)
+        {
+            <div class="form-group">
+                <a class="btn btn-outline-danger" asp-action="AddToFavorite" asp-route-id="@Model.Id"><i class="fa fa-heart"></i>Убрать из Избранного</a>
+            </div>
+        }
+        else
+        {
+            <div class="form-group">
+                <a class="btn btn-outline-danger" asp-action="AddToFavorite" asp-route-id="@Model.Id"><i class="fa fa-heart"></i>Добавить в Избранное</a>
+            </div>
+        }
         <dl class="row">
             <dt class="col-sm-2">
                 @Html.DisplayNameFor(model => model.Name)
@@ -58,13 +70,13 @@
             </dd>
         </dl>
     </div>
-     <div>
-        @await Html.PartialAsync("AddComment")
+    <div>
+        @await Html.PartialAsync("AddComment", new Comment { RoomId = Model.Id})
     </div>
     <div>
-        @await Html.PartialAsync("Comments")
+        @await Html.PartialAsync("Comments", Model.Comments)
     </div>
-   
+
     <div>
         <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
         <a asp-action="Index">Back to List</a>

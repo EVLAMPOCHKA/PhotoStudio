@@ -1,4 +1,5 @@
-﻿
+﻿@model IEnumerable<Comment>
+
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="~/css/comments.css" />
 
@@ -6,18 +7,19 @@
 
 
 <div class="All" id="comments">
-
-    <div class="media">
-        <a class="pull-left" href="#"><img class="media-object" src="https://res.cloudinary.com/dlrmdokvi/image/upload/v1629842333/pngtree-male-man-person-abstract-flat-color-icon-template-png-image_1622081_hpryzd.jpg" alt="" width="100"></a>
-        <div class="media-body">
-            <h4 class="media-heading"></h4>
-            <p>text sdnsdfocdficjosecf</p>
-            <ul class="list-unstyled list-inline media-detail pull-left">
-                <li><i class="fa fa-calendar"></i></li>
-            </ul>
-        </div>
-    </div>
-
+@foreach (var item in Model)
+        {
+            <div class="media">
+                <a class="pull-left" href="#"><img class="media-object" src="https://res.cloudinary.com/dlrmdokvi/image/upload/v1629842333/pngtree-male-man-person-abstract-flat-color-icon-template-png-image_1622081_hpryzd.jpg" alt="" width="100"></a>
+                <div class="media-body">
+                    <h4 class="media-heading">@item.UserName</h4>
+                    <p>@item.Text</p>
+                    <ul class="list-unstyled list-inline media-detail pull-left">
+                        <li><i class="fa fa-calendar"></i>@item.CreationDate</li>
+                    </ul>
+                </div>
+            </div>
+        }
 </div>
 
 

@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using EvlampochkaPhotoStudio.Data;
 using EvlampochkaPhotoStudio.Models;
 using System.Security.Policy;
-
+using Microsoft.AspNetCore.Identity;
 
 namespace EvlampochkaPhotoStudio.Controllers
 {
@@ -17,13 +17,15 @@ namespace EvlampochkaPhotoStudio.Controllers
     {
         private readonly EvlampochkaPhotoStudioContext _context;
         private readonly IWebHostEnvironment _hostEnv;
+        private readonly UserManager<User> _userManager;
 
         private static List<string> imageResources = new List<string>();
 
-        public RoomsController(EvlampochkaPhotoStudioContext context, IWebHostEnvironment hostEnv)
+        public RoomsController(EvlampochkaPhotoStudioContext context, IWebHostEnvironment hostEnv, UserManager<User> userManager)
         {
             _context = context;
             _hostEnv = hostEnv;
+            _userManager = userManager;
         }
 
         // GET: Rooms
@@ -50,7 +52,10 @@ namespace EvlampochkaPhotoStudio.Controllers
             {
                 room.Category = _context.Category.Find(room.CategoryId);
             }
+            room.Comments = _context.Comment.Where(c => c.Room.Id == room.Id).ToList();
             ViewBag.Photos = _context.Photo.Where(p=>p.Room.Id == room.Id).ToList();
+            User user = await _userManager.GetUserAsync(User);
+            ViewBag.IsInFavorite = _context.Favorite.Any(f => f.User == user && f.Room == room);
             return View(room);
         }
 
@@ -226,6 +231,62 @@ namespace EvlampochkaPhotoStudio.Controllers
 
             }
             return NotFound();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddComment([Bind("Id,Text,CreationDate,RoomId")] Comment comment)
+        {
+            comment.User = await _userManager.GetUserAsync(User);
+            comment.UserName = comment.User?.UserName ?? "Гость";
+            comment.Room = _context.Room.Find(comment.RoomId);
+            _context.Add(comment);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Details), new { id = comment.Room.Id });
+        }
+
+
+        public async Task<IActionResult> AddToFavorite(int? id)
+        {
+            Favorite favorite = new Favorite();
+            favorite.RoomId = id;
+            favorite.User = await _userManager.GetUserAsync(User);
+            favorite.Room = _context.Room.Find(id);
+            Favorite currentFavorite = _context.Favorite.FirstOrDefault(f => f.User == favorite.User && f.Room == favorite.Room);
+            if (currentFavorite != null)
+            {
+                _context.Remove(currentFavorite);
+            }
+            else
+            {
+                _context.Add(favorite);
+            }           
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Details), new { id = favorite.Room.Id });
+        }
+
+        public async Task<IActionResult> Favorite()
+        {
+            User user = await _userManager.GetUserAsync(User);
+            List<Favorite> favoriteList = _context.Favorite.Where(f => f.User == user).ToList();
+            List<Room> roomList = new List<Room>();
+            foreach (Favorite f in favoriteList)
+            {
+                roomList.Add(_context.Room.Find(f.RoomId));
+            }
+            return View("Favorite", roomList);
+        }
+
+        public async Task<IActionResult> RemoveFromFavorite(int? id)
+        {
+            User user = await _userManager.GetUserAsync(User);
+            Room room = _context.Room.Find(id);
+            Favorite favorite = _context.Favorite.FirstOrDefault(f => f.User == user && f.Room == room);
+            if (favorite != null)
+            {
+                _context.Remove(favorite);
+            }
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Favorite));
         }
     }
 }

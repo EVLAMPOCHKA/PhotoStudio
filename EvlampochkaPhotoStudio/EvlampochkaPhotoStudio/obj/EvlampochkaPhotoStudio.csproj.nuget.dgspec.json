@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\MyWork\\EvlampochkaPhotoStudio\\EvlampochkaPhotoStudio\\EvlampochkaPhotoStudio.csproj": {}
+    "D:\\MyWork\\PhotoStudio\\EvlampochkaPhotoStudio\\EvlampochkaPhotoStudio\\EvlampochkaPhotoStudio.csproj": {}
   },
   "projects": {
-    "D:\\MyWork\\EvlampochkaPhotoStudio\\EvlampochkaPhotoStudio\\EvlampochkaPhotoStudio.csproj": {
+    "D:\\MyWork\\PhotoStudio\\EvlampochkaPhotoStudio\\EvlampochkaPhotoStudio\\EvlampochkaPhotoStudio.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\MyWork\\EvlampochkaPhotoStudio\\EvlampochkaPhotoStudio\\EvlampochkaPhotoStudio.csproj",
+        "projectUniqueName": "D:\\MyWork\\PhotoStudio\\EvlampochkaPhotoStudio\\EvlampochkaPhotoStudio\\EvlampochkaPhotoStudio.csproj",
         "projectName": "EvlampochkaPhotoStudio",
-        "projectPath": "D:\\MyWork\\EvlampochkaPhotoStudio\\EvlampochkaPhotoStudio\\EvlampochkaPhotoStudio.csproj",
+        "projectPath": "D:\\MyWork\\PhotoStudio\\EvlampochkaPhotoStudio\\EvlampochkaPhotoStudio\\EvlampochkaPhotoStudio.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "D:\\MyWork\\EvlampochkaPhotoStudio\\EvlampochkaPhotoStudio\\obj\\",
+        "outputPath": "D:\\MyWork\\PhotoStudio\\EvlampochkaPhotoStudio\\EvlampochkaPhotoStudio\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -52,6 +52,10 @@
               "target": "Package",
               "version": "[6.0.4, )"
             },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.4, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[6.0.4, )"
@@ -65,6 +69,10 @@
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[6.0.3, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.3.0, )"
             }
           },
           "imports": [
