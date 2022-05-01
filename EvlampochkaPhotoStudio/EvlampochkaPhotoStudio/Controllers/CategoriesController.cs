@@ -11,22 +11,22 @@ using EvlampochkaPhotoStudio.Models;
 
 namespace EvlampochkaPhotoStudio.Controllers
 {
-    public class UsersController : Controller
+    public class CategoriesController : Controller
     {
         private readonly EvlampochkaPhotoStudioContext _context;
 
-        public UsersController(EvlampochkaPhotoStudioContext context)
+        public CategoriesController(EvlampochkaPhotoStudioContext context)
         {
             _context = context;
         }
 
-        // GET: Users
+        // GET: Categories
         public async Task<IActionResult> Index()
         {
-            return View(await _context.User.ToListAsync());
+            return View(await _context.Category.ToListAsync());
         }
 
-        // GET: Users/Details/5
+        // GET: Categories/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -34,39 +34,39 @@ namespace EvlampochkaPhotoStudio.Controllers
                 return NotFound();
             }
 
-            var user = await _context.User
+            var category = await _context.Category
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (user == null)
+            if (category == null)
             {
                 return NotFound();
             }
 
-            return View(user);
+            return View(category);
         }
 
-        // GET: Users/Create
+        // GET: Categories/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Users/Create
+        // POST: Categories/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Email,Password,PhoneNumber")] User user)
+        public async Task<IActionResult> Create([Bind("Id,Name")] Category category)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(user);
+                _context.Add(category);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(user);
+            return View(category);
         }
 
-        // GET: Users/Edit/5
+        // GET: Categories/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -74,22 +74,22 @@ namespace EvlampochkaPhotoStudio.Controllers
                 return NotFound();
             }
 
-            var user = await _context.User.FindAsync(id);
-            if (user == null)
+            var category = await _context.Category.FindAsync(id);
+            if (category == null)
             {
                 return NotFound();
             }
-            return View(user);
+            return View(category);
         }
 
-        // POST: Users/Edit/5
+        // POST: Categories/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Email,Password,PhoneNumber")] User user)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] Category category)
         {
-            if (id != user.Id)
+            if (id != category.Id)
             {
                 return NotFound();
             }
@@ -98,12 +98,12 @@ namespace EvlampochkaPhotoStudio.Controllers
             {
                 try
                 {
-                    _context.Update(user);
+                    _context.Update(category);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!UserExists(user.Id))
+                    if (!CategoryExists(category.Id))
                     {
                         return NotFound();
                     }
@@ -114,10 +114,10 @@ namespace EvlampochkaPhotoStudio.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(user);
+            return View(category);
         }
 
-        // GET: Users/Delete/5
+        // GET: Categories/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -125,30 +125,30 @@ namespace EvlampochkaPhotoStudio.Controllers
                 return NotFound();
             }
 
-            var user = await _context.User
+            var category = await _context.Category
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (user == null)
+            if (category == null)
             {
                 return NotFound();
             }
 
-            return View(user);
+            return View(category);
         }
 
-        // POST: Users/Delete/5
+        // POST: Categories/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var user = await _context.User.FindAsync(id);
-            _context.User.Remove(user);
+            var category = await _context.Category.FindAsync(id);
+            _context.Category.Remove(category);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool UserExists(int id)
+        private bool CategoryExists(int id)
         {
-            return _context.User.Any(e => e.Id == id);
+            return _context.Category.Any(e => e.Id == id);
         }
     }
 }

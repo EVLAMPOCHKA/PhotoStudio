@@ -15,6 +15,10 @@ namespace EvlampochkaPhotoStudio.Data
         {
         }
 
-        public DbSet<EvlampochkaPhotoStudio.Models.User> User { get; set; }
+        public DbSet<EvlampochkaPhotoStudio.Models.Room> Room { get; set; }
+
+        public DbSet<EvlampochkaPhotoStudio.Models.Category> Category { get; set; }
+
+        public DbSet<EvlampochkaPhotoStudio.Models.Photo> Photo { get; set; }
     }
 }

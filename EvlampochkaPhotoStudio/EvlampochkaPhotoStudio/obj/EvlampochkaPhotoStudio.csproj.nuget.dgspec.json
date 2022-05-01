@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\MyWork\\Курсовая УИП 2022\\EvlampochkaPhotoStudio\\EvlampochkaPhotoStudio\\EvlampochkaPhotoStudio.csproj": {}
+    "D:\\MyWork\\EvlampochkaPhotoStudio\\EvlampochkaPhotoStudio\\EvlampochkaPhotoStudio.csproj": {}
   },
   "projects": {
-    "D:\\MyWork\\Курсовая УИП 2022\\EvlampochkaPhotoStudio\\EvlampochkaPhotoStudio\\EvlampochkaPhotoStudio.csproj": {
+    "D:\\MyWork\\EvlampochkaPhotoStudio\\EvlampochkaPhotoStudio\\EvlampochkaPhotoStudio.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\MyWork\\Курсовая УИП 2022\\EvlampochkaPhotoStudio\\EvlampochkaPhotoStudio\\EvlampochkaPhotoStudio.csproj",
+        "projectUniqueName": "D:\\MyWork\\EvlampochkaPhotoStudio\\EvlampochkaPhotoStudio\\EvlampochkaPhotoStudio.csproj",
         "projectName": "EvlampochkaPhotoStudio",
-        "projectPath": "D:\\MyWork\\Курсовая УИП 2022\\EvlampochkaPhotoStudio\\EvlampochkaPhotoStudio\\EvlampochkaPhotoStudio.csproj",
+        "projectPath": "D:\\MyWork\\EvlampochkaPhotoStudio\\EvlampochkaPhotoStudio\\EvlampochkaPhotoStudio.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "D:\\MyWork\\Курсовая УИП 2022\\EvlampochkaPhotoStudio\\EvlampochkaPhotoStudio\\obj\\",
+        "outputPath": "D:\\MyWork\\EvlampochkaPhotoStudio\\EvlampochkaPhotoStudio\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,9 +40,15 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
-            "Microsoft.EntityFrameworkCore.Design": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
+            "CloudinaryDotNet": {
+              "target": "Package",
+              "version": "[1.17.0, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.4, )"
+            },
+            "Microsoft.AspNetCore.Identity.UI": {
               "target": "Package",
               "version": "[6.0.4, )"
             },
@@ -59,10 +65,6 @@
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[6.0.3, )"
-            },
-            "Swashbuckle.AspNetCore": {
-              "target": "Package",
-              "version": "[6.3.0, )"
             }
           },
           "imports": [

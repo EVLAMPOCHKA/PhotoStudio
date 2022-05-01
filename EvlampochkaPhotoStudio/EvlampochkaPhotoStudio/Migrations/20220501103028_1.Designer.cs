@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EvlampochkaPhotoStudio.Migrations
 {
     [DbContext(typeof(EvlampochkaPhotoStudioContext))]
-    [Migration("20220430152055_useradding")]
-    partial class useradding
+    [Migration("20220501103028_1")]
+    partial class _1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,7 +23,7 @@ namespace EvlampochkaPhotoStudio.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("EvlampochkaPhotoStudio.Models.Role", b =>
+            modelBuilder.Entity("EvlampochkaPhotoStudio.Models.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -32,15 +32,14 @@ namespace EvlampochkaPhotoStudio.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Role");
+                    b.ToTable("Category");
                 });
 
-            modelBuilder.Entity("EvlampochkaPhotoStudio.Models.User", b =>
+            modelBuilder.Entity("EvlampochkaPhotoStudio.Models.Room", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -48,41 +47,34 @@ namespace EvlampochkaPhotoStudio.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("Email")
-                        .IsRequired()
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("RoleId")
-                        .HasColumnType("int");
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("RoleId");
+                    b.HasIndex("CategoryId");
 
-                    b.ToTable("User");
+                    b.ToTable("Room");
                 });
 
-            modelBuilder.Entity("EvlampochkaPhotoStudio.Models.User", b =>
+            modelBuilder.Entity("EvlampochkaPhotoStudio.Models.Room", b =>
                 {
-                    b.HasOne("EvlampochkaPhotoStudio.Models.Role", "Role")
+                    b.HasOne("EvlampochkaPhotoStudio.Models.Category", "Category")
                         .WithMany()
-                        .HasForeignKey("RoleId")
+                        .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Role");
+                    b.Navigation("Category");
                 });
 #pragma warning restore 612, 618
         }
