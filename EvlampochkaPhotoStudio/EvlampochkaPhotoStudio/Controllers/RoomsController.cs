@@ -53,9 +53,10 @@ namespace EvlampochkaPhotoStudio.Controllers
                 room.Category = _context.Category.Find(room.CategoryId);
             }
             room.Comments = _context.Comment.Where(c => c.Room.Id == room.Id).ToList();
-            ViewBag.Photos = _context.Photo.Where(p=>p.Room.Id == room.Id).ToList();
+            ViewBag.Photos = _context.Photo.Where(p => p.Room.Id == room.Id).ToList();
             User user = await _userManager.GetUserAsync(User);
             ViewBag.IsInFavorite = _context.Favorite.Any(f => f.User == user && f.Room == room);
+            ViewBag.IsInBooking = _context.Booking.Any(b => b.User == user && b.Room == room);
             return View(room);
         }
 
@@ -74,12 +75,13 @@ namespace EvlampochkaPhotoStudio.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,CategoryId,Description,Price")] Room room)
         {
+            room.Category = _context.Category.Find(room.CategoryId);
             if (ModelState.IsValid)
             {
                 room.Category = _context.Category.Find(room.CategoryId);
-                _context.Add(room);              
-                room = _context.Room.ToList().OrderBy(x=>x.Id).LastOrDefault();
-                foreach(string url in imageResources)
+                _context.Add(room);
+                room = _context.Room.ToList().OrderBy(x => x.Id).LastOrDefault();
+                foreach (string url in imageResources)
                 {
                     Photo photo = new Photo() { ImageResource = url, Room = room };
                     _context.Add(photo);
@@ -201,8 +203,8 @@ namespace EvlampochkaPhotoStudio.Controllers
 
             CloudinaryDotNet.Actions.ImageUploadResult uploadResult = cloudinary.Upload(uploadParams);
 
-            string  url = cloudinary.Api.UrlImgUp.BuildUrl(publicID + filePath.Substring(filePath.LastIndexOf(".")));
-            
+            string url = cloudinary.Api.UrlImgUp.BuildUrl(publicID + filePath.Substring(filePath.LastIndexOf(".")));
+
             imageResources.Add(url);
         }
 
@@ -215,17 +217,17 @@ namespace EvlampochkaPhotoStudio.Controllers
                 info = info.ToLower();
                 List<Room> rooms = new List<Room>();
                 var dbRooms = _context.Room.ToList();
-               
+
                 foreach (var room in dbRooms)
                 {
                     room.Category = _context.Category.Find(room.CategoryId);
-                   if (room.Name.ToLower().Contains(info) || room.Category.Name.ToLower().Contains(info))
+                    if (room.Name.ToLower().Contains(info) || room.Category.Name.ToLower().Contains(info))
                     {
                         rooms.Add(room);
                     }
 
                 }
-                
+
                 if (rooms.Any())
                     return View("Index", rooms);
 
@@ -259,7 +261,7 @@ namespace EvlampochkaPhotoStudio.Controllers
             else
             {
                 _context.Add(favorite);
-            }           
+            }
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Details), new { id = favorite.Room.Id });
         }
@@ -276,6 +278,19 @@ namespace EvlampochkaPhotoStudio.Controllers
             return View("Favorite", roomList);
         }
 
+
+        public async Task<IActionResult> BookedRoom()
+        {
+            User user = await _userManager.GetUserAsync(User);
+            List<Booking> bookingList = _context.Booking.Where(f => f.User == user).ToList();
+            List<Room> roomList = new List<Room>();
+            foreach (Booking b in bookingList)
+            {
+                roomList.Add(_context.Room.Find(b.RoomId));
+            }
+            return View("BookedRoom", roomList);
+        }
+
         public async Task<IActionResult> RemoveFromFavorite(int? id)
         {
             User user = await _userManager.GetUserAsync(User);
@@ -287,6 +302,21 @@ namespace EvlampochkaPhotoStudio.Controllers
             }
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Favorite));
+        }
+
+        public async Task<IActionResult> RemoveFromBooking(int? id)
+        {
+            User user = await _userManager.GetUserAsync(User);
+            Room room = _context.Room.Find(id);
+            Booking booking = _context.Booking.FirstOrDefault(f => f.User == user && f.Room == room);
+            if (booking != null)
+            {
+                BookedDates bookedDates = _context.BookedDates.FirstOrDefault(b=>b.RoomId == booking.RoomId && b.Date == booking.BookingDate);
+                _context.Remove(booking);
+                _context.Remove(bookedDates);
+            }
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(BookedRoom));
         }
     }
 }

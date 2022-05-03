@@ -43,6 +43,18 @@
                 <a class="btn btn-outline-danger" asp-action="AddToFavorite" asp-route-id="@Model.Id"><i class="fa fa-heart"></i>Добавить в Избранное</a>
             </div>
         }
+        @if (ViewBag.IsInBooking)
+        {
+            <div class="form-group">
+                  <a class="btn btn-outline-danger" asp-controller="Rooms" asp-action="RemoveFromBooking" asp-route-id = "@Model.Id"><i class="fa fa-heart"></i>Отменить бронь</a>
+            </div>
+        }
+        else
+        {
+            <div class="form-group">
+                  <a class="btn btn-outline-danger" asp-controller="Bookings" asp-action="Create" asp-route-room = "@Model.Id"><i class="fa fa-heart"></i>Забронировать</a>
+            </div>
+        }
         <dl class="row">
             <dt class="col-sm-2">
                 @Html.DisplayNameFor(model => model.Name)

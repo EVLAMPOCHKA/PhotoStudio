@@ -25,5 +25,13 @@ namespace EvlampochkaPhotoStudio.Data
         public DbSet<EvlampochkaPhotoStudio.Models.Comment> Comment { get; set; }
 
         public DbSet<EvlampochkaPhotoStudio.Models.Favorite> Favorite { get; set; }
+
+        public DbSet<EvlampochkaPhotoStudio.Models.BookedDates> BookedDates { get; set; }
+
+        public DbSet<EvlampochkaPhotoStudio.Models.Booking> Booking { get; set; }
+
+        public DbSet<EvlampochkaPhotoStudio.Models.Contacts> Contacts { get; set; }
+
+        
     }
 }

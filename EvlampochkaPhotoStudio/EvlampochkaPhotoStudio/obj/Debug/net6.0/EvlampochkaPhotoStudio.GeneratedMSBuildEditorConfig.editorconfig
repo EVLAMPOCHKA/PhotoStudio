@@ -47,6 +47,46 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/MyWork/PhotoStudio/EvlampochkaPhotoStudio/EvlampochkaPhotoStudio/Views/BookedDates/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va2VkRGF0ZXNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/MyWork/PhotoStudio/EvlampochkaPhotoStudio/EvlampochkaPhotoStudio/Views/BookedDates/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va2VkRGF0ZXNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/MyWork/PhotoStudio/EvlampochkaPhotoStudio/EvlampochkaPhotoStudio/Views/BookedDates/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va2VkRGF0ZXNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/MyWork/PhotoStudio/EvlampochkaPhotoStudio/EvlampochkaPhotoStudio/Views/BookedDates/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va2VkRGF0ZXNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/MyWork/PhotoStudio/EvlampochkaPhotoStudio/EvlampochkaPhotoStudio/Views/BookedDates/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va2VkRGF0ZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/MyWork/PhotoStudio/EvlampochkaPhotoStudio/EvlampochkaPhotoStudio/Views/Bookings/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va2luZ3NcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/MyWork/PhotoStudio/EvlampochkaPhotoStudio/EvlampochkaPhotoStudio/Views/Bookings/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va2luZ3NcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/MyWork/PhotoStudio/EvlampochkaPhotoStudio/EvlampochkaPhotoStudio/Views/Bookings/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va2luZ3NcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/MyWork/PhotoStudio/EvlampochkaPhotoStudio/EvlampochkaPhotoStudio/Views/Bookings/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va2luZ3NcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/MyWork/PhotoStudio/EvlampochkaPhotoStudio/EvlampochkaPhotoStudio/Views/Bookings/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va2luZ3NcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/MyWork/PhotoStudio/EvlampochkaPhotoStudio/EvlampochkaPhotoStudio/Views/Categories/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmllc1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -67,6 +107,26 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmllc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/MyWork/PhotoStudio/EvlampochkaPhotoStudio/EvlampochkaPhotoStudio/Views/Contacts/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udGFjdHNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/MyWork/PhotoStudio/EvlampochkaPhotoStudio/EvlampochkaPhotoStudio/Views/Contacts/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udGFjdHNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/MyWork/PhotoStudio/EvlampochkaPhotoStudio/EvlampochkaPhotoStudio/Views/Contacts/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udGFjdHNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/MyWork/PhotoStudio/EvlampochkaPhotoStudio/EvlampochkaPhotoStudio/Views/Contacts/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udGFjdHNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/MyWork/PhotoStudio/EvlampochkaPhotoStudio/EvlampochkaPhotoStudio/Views/Contacts/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udGFjdHNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/MyWork/PhotoStudio/EvlampochkaPhotoStudio/EvlampochkaPhotoStudio/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -77,6 +137,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/MyWork/PhotoStudio/EvlampochkaPhotoStudio/EvlampochkaPhotoStudio/Views/Rooms/AddComment.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9vbXNcQWRkQ29tbWVudC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/MyWork/PhotoStudio/EvlampochkaPhotoStudio/EvlampochkaPhotoStudio/Views/Rooms/BookedRoom.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9vbXNcQm9va2VkUm9vbS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/MyWork/PhotoStudio/EvlampochkaPhotoStudio/EvlampochkaPhotoStudio/Views/Rooms/Comments.cshtml]

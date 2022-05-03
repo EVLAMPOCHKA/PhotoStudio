@@ -4,6 +4,7 @@ using EvlampochkaPhotoStudio.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EvlampochkaPhotoStudio.Migrations
 {
     [DbContext(typeof(EvlampochkaPhotoStudioContext))]
-    partial class EvlampochkaPhotoStudioContextModelSnapshot : ModelSnapshot
+    [Migration("20220503144018_contacts")]
+    partial class contacts
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
