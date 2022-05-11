@@ -8,9 +8,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EvlampochkaPhotoStudio.Data;
 using EvlampochkaPhotoStudio.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EvlampochkaPhotoStudio.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class CategoriesController : Controller
     {
         private readonly EvlampochkaPhotoStudioContext _context;

@@ -1,45 +1,67 @@
 ﻿@model IEnumerable<EvlampochkaPhotoStudio.Models.Room>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Мои брони";
 }
-
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                <a asp-action="RemoveFromBooking" asp-route-id="@item.Id">Отменить бронь</a>
-            </td>
-        </tr>
+@if (Model.Count() < 1)
+{
+    <h1>Кажется, тут пусто...</h1>
 }
-    </tbody>
-</table>
+else
+{
+    <h1>Мои брони</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>
+                    Зал
+                </th>
+                <th>
+                    Категория
+                </th>
+                <th>
+                    Цена
+                </th>
+                <th>
+                    Дата бронирования
+                </th>
+                 <th>
+                    Дата фотосессии
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <img src="@item.MainImage" class="img-thumbnail" alt="Image..." style="width: 100px; height:100px;" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Category.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price) BYN
+                    </td>
+                     <td>
+                        @Html.DisplayFor(modelItem => item.CreationDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BookedDate)
+                    </td>
+                    <td>
+                        <a asp-action="Details" asp-controller="Rooms" asp-route-id="@item.Id">Подробнее</a>
+                        <br>
+                        <a asp-action="DeleteBooking" asp-controller="Rooms" asp-route-id="@item.Id">Отменить бронь</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

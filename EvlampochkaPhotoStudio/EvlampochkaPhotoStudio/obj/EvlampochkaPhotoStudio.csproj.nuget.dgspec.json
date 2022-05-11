@@ -40,9 +40,17 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Bootswatch": {
+              "target": "Package",
+              "version": "[4.0.0, )"
+            },
             "CloudinaryDotNet": {
               "target": "Package",
               "version": "[1.17.0, )"
+            },
+            "FontAwesome": {
+              "target": "Package",
+              "version": "[4.7.0, )"
             },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",

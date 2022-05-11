@@ -33,7 +33,7 @@ namespace EvlampochkaPhotoStudio.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("RoomId")
+                    b.Property<int>("RoomId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -57,7 +57,7 @@ namespace EvlampochkaPhotoStudio.Migrations
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("RoomId")
+                    b.Property<int>("RoomId")
                         .HasColumnType("int");
 
                     b.Property<string>("UserId")
@@ -81,6 +81,7 @@ namespace EvlampochkaPhotoStudio.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -99,10 +100,11 @@ namespace EvlampochkaPhotoStudio.Migrations
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("RoomId")
+                    b.Property<int>("RoomId")
                         .HasColumnType("int");
 
                     b.Property<string>("Text")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
@@ -129,12 +131,15 @@ namespace EvlampochkaPhotoStudio.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Address")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Phone")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -150,7 +155,7 @@ namespace EvlampochkaPhotoStudio.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int?>("RoomId")
+                    b.Property<int>("RoomId")
                         .HasColumnType("int");
 
                     b.Property<string>("UserId")
@@ -176,7 +181,7 @@ namespace EvlampochkaPhotoStudio.Migrations
                     b.Property<string>("ImageResource")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("RoomId")
+                    b.Property<int>("RoomId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -225,9 +230,14 @@ namespace EvlampochkaPhotoStudio.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MainImage")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("Price")
@@ -415,7 +425,9 @@ namespace EvlampochkaPhotoStudio.Migrations
                 {
                     b.HasOne("EvlampochkaPhotoStudio.Models.Room", "Room")
                         .WithMany()
-                        .HasForeignKey("RoomId");
+                        .HasForeignKey("RoomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Room");
                 });
@@ -424,7 +436,9 @@ namespace EvlampochkaPhotoStudio.Migrations
                 {
                     b.HasOne("EvlampochkaPhotoStudio.Models.Room", "Room")
                         .WithMany()
-                        .HasForeignKey("RoomId");
+                        .HasForeignKey("RoomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("EvlampochkaPhotoStudio.Models.User", "User")
                         .WithMany()
@@ -439,7 +453,9 @@ namespace EvlampochkaPhotoStudio.Migrations
                 {
                     b.HasOne("EvlampochkaPhotoStudio.Models.Room", "Room")
                         .WithMany("Comments")
-                        .HasForeignKey("RoomId");
+                        .HasForeignKey("RoomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("EvlampochkaPhotoStudio.Models.User", "User")
                         .WithMany()
@@ -454,7 +470,9 @@ namespace EvlampochkaPhotoStudio.Migrations
                 {
                     b.HasOne("EvlampochkaPhotoStudio.Models.Room", "Room")
                         .WithMany()
-                        .HasForeignKey("RoomId");
+                        .HasForeignKey("RoomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("EvlampochkaPhotoStudio.Models.User", "User")
                         .WithMany("Favorites")
@@ -469,7 +487,9 @@ namespace EvlampochkaPhotoStudio.Migrations
                 {
                     b.HasOne("EvlampochkaPhotoStudio.Models.Room", "Room")
                         .WithMany()
-                        .HasForeignKey("RoomId");
+                        .HasForeignKey("RoomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Room");
                 });

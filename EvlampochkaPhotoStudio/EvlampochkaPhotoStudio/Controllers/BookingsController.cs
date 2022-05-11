@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using EvlampochkaPhotoStudio.Data;
 using EvlampochkaPhotoStudio.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EvlampochkaPhotoStudio.Controllers
 {
@@ -57,6 +58,7 @@ namespace EvlampochkaPhotoStudio.Controllers
         }
 
         // GET: Bookings/Create
+        [Authorize]
         public IActionResult Create(int? room)
         {
             ViewBag.RoomId = room;
@@ -66,6 +68,7 @@ namespace EvlampochkaPhotoStudio.Controllers
         // POST: Bookings/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,RoomId,CreationDate,BookingDate")] Booking booking)
@@ -79,8 +82,17 @@ namespace EvlampochkaPhotoStudio.Controllers
             bookedDates.Date = booking.BookingDate;
             _context.Add(bookedDates);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-
+            List<Booking> bookingList = _context.Booking.Where(f => f.User == booking.User).ToList();
+            List<Room> roomList = new List<Room>();
+            foreach (Booking b in bookingList)
+            {
+                Room room = await _context.Room.FindAsync(b.RoomId);
+                room.Category = _context.Category.Find(room.CategoryId);
+                room.BookedDate = b.BookingDate;
+                room.CreationDate = b.CreationDate;
+                roomList.Add(room);
+            }
+            return View("../Rooms/BookedRoom", roomList);
         }
 
         // GET: Bookings/Edit/5

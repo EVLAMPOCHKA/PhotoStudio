@@ -1,13 +1,11 @@
 ﻿@model EvlampochkaPhotoStudio.Models.Booking
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Бронирование";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Create</h1>
-
-<h4>Booking</h4>
+<h4>Выберите дату, когда вы хотите устроить фотосессию?</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -15,18 +13,19 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>                    
               <input asp-for="RoomId" type="hidden" class="form-control" value="@ViewBag.RoomId" />
             <div class="form-group">
-                <label asp-for="BookingDate" class="control-label"></label>
-                <input asp-for="BookingDate" class="form-control" />
+                <label asp-for="BookingDate" class="control-label">Дата:</label>
+                <input asp-for="BookingDate" class="form-control" type="date" min="2022-05-11" max="2023-05-11" required="true" />
                 <span asp-validation-for="BookingDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <br />
+                <input type="submit" value="Забронировать" class="btn btn-outline-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" asp-controller="Rooms">Отмена</a>
 </div>
 

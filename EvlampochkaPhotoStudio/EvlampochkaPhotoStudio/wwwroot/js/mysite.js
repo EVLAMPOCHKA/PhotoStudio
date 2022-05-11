@@ -24,7 +24,7 @@ function currentSlide(n) {
 /* Основная функция слайдера */
 function showSlides(n) {
     var i;
-    var slides = document.getElementsByClassName("item");
+    var slides = document.getElementsByClassName("image");
     var dots = document.getElementsByClassName("slider-dots_item");
     if (n > slides.length) {
         slideIndex = 1
@@ -58,3 +58,5 @@ Dropzone.autoDiscover = true;
             }
         }
     }
+
+import "bootswatch/dist/lux/bootstrap.min.css"

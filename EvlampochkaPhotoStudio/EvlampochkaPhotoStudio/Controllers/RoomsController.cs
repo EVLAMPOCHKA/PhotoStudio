@@ -10,6 +10,7 @@ using EvlampochkaPhotoStudio.Data;
 using EvlampochkaPhotoStudio.Models;
 using System.Security.Policy;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EvlampochkaPhotoStudio.Controllers
 {
@@ -20,6 +21,8 @@ namespace EvlampochkaPhotoStudio.Controllers
         private readonly UserManager<User> _userManager;
 
         private static List<string> imageResources = new List<string>();
+        private const string baseResource = "https://res.cloudinary.com/dlrmdokvi/image/upload/v1651923005/901_1_bg7jef.jpg";
+        private static string mainImage = null;
 
         public RoomsController(EvlampochkaPhotoStudioContext context, IWebHostEnvironment hostEnv, UserManager<User> userManager)
         {
@@ -55,12 +58,14 @@ namespace EvlampochkaPhotoStudio.Controllers
             room.Comments = _context.Comment.Where(c => c.Room.Id == room.Id).ToList();
             ViewBag.Photos = _context.Photo.Where(p => p.Room.Id == room.Id).ToList();
             User user = await _userManager.GetUserAsync(User);
+            ViewBag.IsUser = user != null;
             ViewBag.IsInFavorite = _context.Favorite.Any(f => f.User == user && f.Room == room);
             ViewBag.IsInBooking = _context.Booking.Any(b => b.User == user && b.Room == room);
             return View(room);
         }
 
         // GET: Rooms/Create
+        [Authorize(Roles = "admin")]
         public IActionResult Create()
         {
             List<Category> allCategories = _context.Category.ToList();
@@ -73,26 +78,37 @@ namespace EvlampochkaPhotoStudio.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+
         public async Task<IActionResult> Create([Bind("Id,Name,CategoryId,Description,Price")] Room room)
         {
             room.Category = _context.Category.Find(room.CategoryId);
-            if (ModelState.IsValid)
+            _context.Add(room);
+            await _context.SaveChangesAsync();
+            room = _context.Room.ToList().OrderBy(x => x.Id).LastOrDefault();
+            if (imageResources.Count > 0)
             {
-                room.Category = _context.Category.Find(room.CategoryId);
-                _context.Add(room);
-                room = _context.Room.ToList().OrderBy(x => x.Id).LastOrDefault();
                 foreach (string url in imageResources)
                 {
                     Photo photo = new Photo() { ImageResource = url, Room = room };
                     _context.Add(photo);
                 }
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                room.MainImage = imageResources.First();
             }
-            return View(room);
+            else
+            {
+                Photo photo = new Photo() { ImageResource = baseResource, Room = room };
+                _context.Add(photo);
+                room.MainImage = baseResource;
+            }
+            _context.Update(room);
+            imageResources = new List<string>();
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Rooms/Edit/5
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -101,6 +117,7 @@ namespace EvlampochkaPhotoStudio.Controllers
             }
 
             var room = await _context.Room.FindAsync(id);
+            mainImage = room.MainImage;
             if (room == null)
             {
                 return NotFound();
@@ -119,37 +136,55 @@ namespace EvlampochkaPhotoStudio.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Price")] Room room)
+
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,CategoryId,Description,Price,MainImage")] Room room)
         {
             if (id != room.Id)
             {
                 return NotFound();
             }
-
-            if (ModelState.IsValid)
+            try
             {
-                try
+                if (imageResources.Count > 0)
                 {
-                    _context.Update(room);
-                    await _context.SaveChangesAsync();
+                    //delete old photos
+                    var photos = _context.Photo.Where(ph => ph.Room == room).ToList();
+                    photos.ForEach(photo => _context.Remove(photo));
+                    //add new photos
+                    foreach (string url in imageResources)
+                    {
+                        Photo photo = new Photo() { ImageResource = url, Room = room };
+                        _context.Add(photo);
+                    }
+                    room.MainImage = imageResources.First();
                 }
-                catch (DbUpdateConcurrencyException)
+                else
                 {
-                    if (!RoomExists(room.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    room.MainImage = mainImage ?? baseResource;
+                    mainImage = null;
                 }
-                return RedirectToAction(nameof(Index));
+
+                _context.Update(room);
+                imageResources = new List<string>();
+
+                await _context.SaveChangesAsync();
             }
-            return View(room);
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!RoomExists(room.Id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Rooms/Delete/5
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -170,6 +205,7 @@ namespace EvlampochkaPhotoStudio.Controllers
         // POST: Rooms/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var room = await _context.Room.FindAsync(id);
@@ -211,13 +247,12 @@ namespace EvlampochkaPhotoStudio.Controllers
         [HttpPost]
         public IActionResult Search(string info)
         {
+            List<Room> rooms = new List<Room>();
+            var dbRooms = _context.Room.ToList();
+
             if (info != null)
             {
-
                 info = info.ToLower();
-                List<Room> rooms = new List<Room>();
-                var dbRooms = _context.Room.ToList();
-
                 foreach (var room in dbRooms)
                 {
                     room.Category = _context.Category.Find(room.CategoryId);
@@ -227,12 +262,8 @@ namespace EvlampochkaPhotoStudio.Controllers
                     }
 
                 }
-
-                if (rooms.Any())
-                    return View("Index", rooms);
-
             }
-            return NotFound();
+            return View("Index", rooms);
         }
 
         [HttpPost]
@@ -246,8 +277,8 @@ namespace EvlampochkaPhotoStudio.Controllers
             return RedirectToAction(nameof(Details), new { id = comment.Room.Id });
         }
 
-
-        public async Task<IActionResult> AddToFavorite(int? id)
+        [Authorize]
+        public async Task<IActionResult> AddToFavorite(int id)
         {
             Favorite favorite = new Favorite();
             favorite.RoomId = id;
@@ -266,6 +297,7 @@ namespace EvlampochkaPhotoStudio.Controllers
             return RedirectToAction(nameof(Details), new { id = favorite.Room.Id });
         }
 
+        [Authorize]
         public async Task<IActionResult> Favorite()
         {
             User user = await _userManager.GetUserAsync(User);
@@ -273,12 +305,14 @@ namespace EvlampochkaPhotoStudio.Controllers
             List<Room> roomList = new List<Room>();
             foreach (Favorite f in favoriteList)
             {
-                roomList.Add(_context.Room.Find(f.RoomId));
+                Room room = await _context.Room.FindAsync(f.RoomId);
+                room.Category = _context.Category.Find(room.CategoryId);
+                roomList.Add(room);
             }
             return View("Favorite", roomList);
         }
 
-
+        [Authorize]
         public async Task<IActionResult> BookedRoom()
         {
             User user = await _userManager.GetUserAsync(User);
@@ -286,11 +320,16 @@ namespace EvlampochkaPhotoStudio.Controllers
             List<Room> roomList = new List<Room>();
             foreach (Booking b in bookingList)
             {
-                roomList.Add(_context.Room.Find(b.RoomId));
+                Room room = await _context.Room.FindAsync(b.RoomId);
+                room.Category = _context.Category.Find(room.CategoryId);
+                room.BookedDate = b.BookingDate;
+                room.CreationDate = b.CreationDate;
+                roomList.Add(room);
             }
             return View("BookedRoom", roomList);
         }
 
+        [Authorize]
         public async Task<IActionResult> RemoveFromFavorite(int? id)
         {
             User user = await _userManager.GetUserAsync(User);
@@ -304,6 +343,25 @@ namespace EvlampochkaPhotoStudio.Controllers
             return RedirectToAction(nameof(Favorite));
         }
 
+        [Authorize]
+        public async Task<IActionResult> DeleteBooking(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var room = await _context.Room
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (room == null)
+            {
+                return NotFound();
+            }
+
+            return View("DeleteBooking", room);
+        }
+
+        [Authorize]
         public async Task<IActionResult> RemoveFromBooking(int? id)
         {
             User user = await _userManager.GetUserAsync(User);
@@ -311,7 +369,7 @@ namespace EvlampochkaPhotoStudio.Controllers
             Booking booking = _context.Booking.FirstOrDefault(f => f.User == user && f.Room == room);
             if (booking != null)
             {
-                BookedDates bookedDates = _context.BookedDates.FirstOrDefault(b=>b.RoomId == booking.RoomId && b.Date == booking.BookingDate);
+                BookedDates bookedDates = _context.BookedDates.FirstOrDefault(b => b.RoomId == booking.RoomId && b.Date == booking.BookingDate);
                 _context.Remove(booking);
                 _context.Remove(bookedDates);
             }

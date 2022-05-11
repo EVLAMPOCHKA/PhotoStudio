@@ -1,0 +1,14 @@
+﻿@model EvlampochkaPhotoStudio.Models.Room
+
+@{
+    ViewData["Title"] = "Удаление";
+}
+
+<h3>Вы уверены, что хотите отменить бронь зала?</h3>
+<div>    
+    <form asp-action="RemoveFromBooking">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Отменить бронь" class="btn btn-danger" /> |
+        <a asp-action="Index">Отмена</a>
+    </form>
+</div>

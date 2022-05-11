@@ -2,6 +2,19 @@
   "version": 3,
   "targets": {
     "net6.0": {
+      "bootstrap/4.0.0": {
+        "type": "package",
+        "dependencies": {
+          "jQuery": "[3.0.0, 4.0.0)",
+          "popper.js": "[1.12.9, 2.0.0)"
+        }
+      },
+      "Bootswatch/4.0.0": {
+        "type": "package",
+        "dependencies": {
+          "bootstrap": "4.0.0"
+        }
+      },
       "CloudinaryDotNet/1.17.0": {
         "type": "package",
         "dependencies": {
@@ -17,6 +30,9 @@
           "lib/netstandard2.0/CloudinaryDotNet.dll": {}
         }
       },
+      "FontAwesome/4.7.0": {
+        "type": "package"
+      },
       "Humanizer.Core/2.8.26": {
         "type": "package",
         "compile": {
@@ -25,6 +41,9 @@
         "runtime": {
           "lib/netstandard2.0/Humanizer.dll": {}
         }
+      },
+      "jQuery/3.0.0": {
+        "type": "package"
       },
       "MessagePack/2.1.152": {
         "type": "package",
@@ -1768,6 +1787,9 @@
           "lib/netstandard2.0/NuGet.Versioning.dll": {}
         }
       },
+      "popper.js/1.12.9": {
+        "type": "package"
+      },
       "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
         "type": "package",
         "runtimeTargets": {
@@ -3304,6 +3326,132 @@
     }
   },
   "libraries": {
+    "bootstrap/4.0.0": {
+      "sha512": "aW3kJMmptC2GD4+hIa3x3fSrPF4VkrWQ2PRBEJg+o7lMRMi7u4UW9igY/GP02/wrIpH/CusL+mQIM42YhvA3XQ==",
+      "type": "package",
+      "path": "bootstrap/4.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "bootstrap.4.0.0.nupkg.sha512",
+        "bootstrap.nuspec",
+        "content/Content/bootstrap-grid.css",
+        "content/Content/bootstrap-grid.css.map",
+        "content/Content/bootstrap-grid.min.css",
+        "content/Content/bootstrap-grid.min.css.map",
+        "content/Content/bootstrap-reboot.css",
+        "content/Content/bootstrap-reboot.css.map",
+        "content/Content/bootstrap-reboot.min.css",
+        "content/Content/bootstrap-reboot.min.css.map",
+        "content/Content/bootstrap.css",
+        "content/Content/bootstrap.css.map",
+        "content/Content/bootstrap.min.css",
+        "content/Content/bootstrap.min.css.map",
+        "content/Scripts/bootstrap.bundle.js",
+        "content/Scripts/bootstrap.bundle.js.map",
+        "content/Scripts/bootstrap.bundle.min.js",
+        "content/Scripts/bootstrap.bundle.min.js.map",
+        "content/Scripts/bootstrap.js",
+        "content/Scripts/bootstrap.js.map",
+        "content/Scripts/bootstrap.min.js",
+        "content/Scripts/bootstrap.min.js.map"
+      ]
+    },
+    "Bootswatch/4.0.0": {
+      "sha512": "JZ1xSdNO6Drx7UbHPgDtQW5v0f7FjQm5UHk/uhk8osMR638ghsa3pYc8SXCP6F3hvyYgm1dQ3vAqsnH4AZJJHw==",
+      "type": "package",
+      "path": "bootswatch/4.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "bootswatch.4.0.0.nupkg.sha512",
+        "bootswatch.nuspec",
+        "content/Content/bootswatch/cerulean/_bootswatch.scss",
+        "content/Content/bootswatch/cerulean/_variables.scss",
+        "content/Content/bootswatch/cerulean/bootstrap.css",
+        "content/Content/bootswatch/cerulean/bootstrap.min.css",
+        "content/Content/bootswatch/cosmo/_bootswatch.scss",
+        "content/Content/bootswatch/cosmo/_variables.scss",
+        "content/Content/bootswatch/cosmo/bootstrap.css",
+        "content/Content/bootswatch/cosmo/bootstrap.min.css",
+        "content/Content/bootswatch/cyborg/_bootswatch.scss",
+        "content/Content/bootswatch/cyborg/_variables.scss",
+        "content/Content/bootswatch/cyborg/bootstrap.css",
+        "content/Content/bootswatch/cyborg/bootstrap.min.css",
+        "content/Content/bootswatch/darkly/_bootswatch.scss",
+        "content/Content/bootswatch/darkly/_variables.scss",
+        "content/Content/bootswatch/darkly/bootstrap.css",
+        "content/Content/bootswatch/darkly/bootstrap.min.css",
+        "content/Content/bootswatch/flatly/_bootswatch.scss",
+        "content/Content/bootswatch/flatly/_variables.scss",
+        "content/Content/bootswatch/flatly/bootstrap.css",
+        "content/Content/bootswatch/flatly/bootstrap.min.css",
+        "content/Content/bootswatch/journal/_bootswatch.scss",
+        "content/Content/bootswatch/journal/_variables.scss",
+        "content/Content/bootswatch/journal/bootstrap.css",
+        "content/Content/bootswatch/journal/bootstrap.min.css",
+        "content/Content/bootswatch/litera/_bootswatch.scss",
+        "content/Content/bootswatch/litera/_variables.scss",
+        "content/Content/bootswatch/litera/bootstrap.css",
+        "content/Content/bootswatch/litera/bootstrap.min.css",
+        "content/Content/bootswatch/lumen/_bootswatch.scss",
+        "content/Content/bootswatch/lumen/_variables.scss",
+        "content/Content/bootswatch/lumen/bootstrap.css",
+        "content/Content/bootswatch/lumen/bootstrap.min.css",
+        "content/Content/bootswatch/lux/_bootswatch.scss",
+        "content/Content/bootswatch/lux/_variables.scss",
+        "content/Content/bootswatch/lux/bootstrap.css",
+        "content/Content/bootswatch/lux/bootstrap.min.css",
+        "content/Content/bootswatch/materia/_bootswatch.scss",
+        "content/Content/bootswatch/materia/_variables.scss",
+        "content/Content/bootswatch/materia/bootstrap.css",
+        "content/Content/bootswatch/materia/bootstrap.min.css",
+        "content/Content/bootswatch/minty/_bootswatch.scss",
+        "content/Content/bootswatch/minty/_variables.scss",
+        "content/Content/bootswatch/minty/bootstrap.css",
+        "content/Content/bootswatch/minty/bootstrap.min.css",
+        "content/Content/bootswatch/pulse/_bootswatch.scss",
+        "content/Content/bootswatch/pulse/_variables.scss",
+        "content/Content/bootswatch/pulse/bootstrap.css",
+        "content/Content/bootswatch/pulse/bootstrap.min.css",
+        "content/Content/bootswatch/sandstone/_bootswatch.scss",
+        "content/Content/bootswatch/sandstone/_variables.scss",
+        "content/Content/bootswatch/sandstone/bootstrap.css",
+        "content/Content/bootswatch/sandstone/bootstrap.min.css",
+        "content/Content/bootswatch/simplex/_bootswatch.scss",
+        "content/Content/bootswatch/simplex/_variables.scss",
+        "content/Content/bootswatch/simplex/bootstrap.css",
+        "content/Content/bootswatch/simplex/bootstrap.min.css",
+        "content/Content/bootswatch/sketchy/_bootswatch.scss",
+        "content/Content/bootswatch/sketchy/_variables.scss",
+        "content/Content/bootswatch/sketchy/bootstrap.css",
+        "content/Content/bootswatch/sketchy/bootstrap.min.css",
+        "content/Content/bootswatch/slate/_bootswatch.scss",
+        "content/Content/bootswatch/slate/_variables.scss",
+        "content/Content/bootswatch/slate/bootstrap.css",
+        "content/Content/bootswatch/slate/bootstrap.min.css",
+        "content/Content/bootswatch/solar/_bootswatch.scss",
+        "content/Content/bootswatch/solar/_variables.scss",
+        "content/Content/bootswatch/solar/bootstrap.css",
+        "content/Content/bootswatch/solar/bootstrap.min.css",
+        "content/Content/bootswatch/spacelab/_bootswatch.scss",
+        "content/Content/bootswatch/spacelab/_variables.scss",
+        "content/Content/bootswatch/spacelab/bootstrap.css",
+        "content/Content/bootswatch/spacelab/bootstrap.min.css",
+        "content/Content/bootswatch/superhero/_bootswatch.scss",
+        "content/Content/bootswatch/superhero/_variables.scss",
+        "content/Content/bootswatch/superhero/bootstrap.css",
+        "content/Content/bootswatch/superhero/bootstrap.min.css",
+        "content/Content/bootswatch/united/_bootswatch.scss",
+        "content/Content/bootswatch/united/_variables.scss",
+        "content/Content/bootswatch/united/bootstrap.css",
+        "content/Content/bootswatch/united/bootstrap.min.css",
+        "content/Content/bootswatch/yeti/_bootswatch.scss",
+        "content/Content/bootswatch/yeti/_variables.scss",
+        "content/Content/bootswatch/yeti/bootstrap.css",
+        "content/Content/bootswatch/yeti/bootstrap.min.css"
+      ]
+    },
     "CloudinaryDotNet/1.17.0": {
       "sha512": "W0dkJ/oW1LruIHO1pGDUJPHhmqBHim5fTL1qZZD9OXyszMpo0hVnueO5OYeLj4OyrZB6RnH0oSKXde88IxIOoA==",
       "type": "package",
@@ -3322,6 +3470,27 @@
         "lib/netstandard2.0/CloudinaryDotNet.xml"
       ]
     },
+    "FontAwesome/4.7.0": {
+      "sha512": "n4H/brfszElyoZ4kmGh8E75uqvLzLvFr3h2PFVdPH1LwUmWIpeqdaW2pcC4oZAhg7sESyObh0IZpAI8COCNeUg==",
+      "type": "package",
+      "path": "fontawesome/4.7.0",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Content/Content/font-awesome.css",
+        "Content/Content/font-awesome.min.css",
+        "Content/fonts/FontAwesome.otf",
+        "Content/fonts/fontawesome-webfont.eot",
+        "Content/fonts/fontawesome-webfont.svg",
+        "Content/fonts/fontawesome-webfont.ttf",
+        "Content/fonts/fontawesome-webfont.woff",
+        "Content/fonts/fontawesome-webfont.woff2",
+        "fontawesome.4.7.0.nupkg.sha512",
+        "fontawesome.nuspec",
+        "tools/install.ps1"
+      ]
+    },
     "Humanizer.Core/2.8.26": {
       "sha512": "OiKusGL20vby4uDEswj2IgkdchC1yQ6rwbIkZDVBPIR6al2b7n3pC91elBul9q33KaBgRKhbZH3+2Ur4fnWx2A==",
       "type": "package",
@@ -3336,6 +3505,29 @@
         "lib/netstandard2.0/Humanizer.dll",
         "lib/netstandard2.0/Humanizer.xml",
         "logo.png"
+      ]
+    },
+    "jQuery/3.0.0": {
+      "sha512": "xFfntV19HzCtKdJWOp/XT9PUY3SslokTDDLFJZdBug36j1XVhw1+vPQ/n7Gd5y+jdpesn5B1m1yn1qIUq57jlA==",
+      "type": "package",
+      "path": "jquery/3.0.0",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Content/Scripts/jquery-3.0.0-vsdoc.js",
+        "Content/Scripts/jquery-3.0.0.js",
+        "Content/Scripts/jquery-3.0.0.min.js",
+        "Content/Scripts/jquery-3.0.0.min.map",
+        "Content/Scripts/jquery-3.0.0.slim.js",
+        "Content/Scripts/jquery-3.0.0.slim.min.js",
+        "Content/Scripts/jquery-3.0.0.slim.min.map",
+        "Tools/common.ps1",
+        "Tools/install.ps1",
+        "Tools/jquery-3.0.0.intellisense.js",
+        "Tools/uninstall.ps1",
+        "jquery.3.0.0.nupkg.sha512",
+        "jquery.nuspec"
       ]
     },
     "MessagePack/2.1.152": {
@@ -6108,6 +6300,43 @@
         "lib/netstandard2.0/NuGet.Versioning.xml",
         "nuget.versioning.5.11.0.nupkg.sha512",
         "nuget.versioning.nuspec"
+      ]
+    },
+    "popper.js/1.12.9": {
+      "sha512": "WfoI8YXFx31zr8w6AvYMmqKihR3a/wLc5wBhu41ApgBukTM8C2UHNSRFrO6485SDQ/HKoSn9yiEMgfBx1LVNNw==",
+      "type": "package",
+      "path": "popper.js/1.12.9",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "content/Scripts/README.md",
+        "content/Scripts/esm/popper-utils.js",
+        "content/Scripts/esm/popper-utils.js.map",
+        "content/Scripts/esm/popper-utils.min.js",
+        "content/Scripts/esm/popper-utils.min.js.map",
+        "content/Scripts/esm/popper.js",
+        "content/Scripts/esm/popper.js.map",
+        "content/Scripts/esm/popper.min.js",
+        "content/Scripts/esm/popper.min.js.map",
+        "content/Scripts/index.d.ts",
+        "content/Scripts/popper-utils.js",
+        "content/Scripts/popper-utils.js.map",
+        "content/Scripts/popper-utils.min.js",
+        "content/Scripts/popper-utils.min.js.map",
+        "content/Scripts/popper.js",
+        "content/Scripts/popper.js.map",
+        "content/Scripts/popper.min.js",
+        "content/Scripts/popper.min.js.map",
+        "content/Scripts/umd/popper-utils.js",
+        "content/Scripts/umd/popper-utils.js.map",
+        "content/Scripts/umd/popper-utils.min.js",
+        "content/Scripts/umd/popper-utils.min.js.map",
+        "content/Scripts/umd/popper.js",
+        "content/Scripts/umd/popper.js.map",
+        "content/Scripts/umd/popper.min.js",
+        "content/Scripts/umd/popper.min.js.map",
+        "popper.js.1.12.9.nupkg.sha512",
+        "popper.js.nuspec"
       ]
     },
     "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
@@ -10187,7 +10416,9 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "Bootswatch >= 4.0.0",
       "CloudinaryDotNet >= 1.17.0",
+      "FontAwesome >= 4.7.0",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 6.0.4",
       "Microsoft.AspNetCore.Identity.UI >= 6.0.4",
       "Microsoft.EntityFrameworkCore >= 6.0.4",
@@ -10236,9 +10467,17 @@
       "net6.0": {
         "targetAlias": "net6.0",
         "dependencies": {
+          "Bootswatch": {
+            "target": "Package",
+            "version": "[4.0.0, )"
+          },
           "CloudinaryDotNet": {
             "target": "Package",
             "version": "[1.17.0, )"
+          },
+          "FontAwesome": {
+            "target": "Package",
+            "version": "[4.7.0, )"
           },
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
             "target": "Package",
