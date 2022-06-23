@@ -1,2 +1,2 @@
 # PhotoStudio
-Project to UIP
+UIP's Project
